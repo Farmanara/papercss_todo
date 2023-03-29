@@ -1,0 +1,56 @@
+{%extends './base.html'%}
+
+
+{% block content %}
+
+
+{%if request.user.is_authenticated%}
+    <div class ="grid">
+    <p>Hey {{request.user}} ! &#x1F609; </p>
+    <div></div>
+    <div></div>
+
+    <a href="{%url 'logout'%}">Logout</a>
+
+    </div>
+
+    {%else%}
+    <a href="{% url 'login'%}"> Login</a>
+{%endif%}
+
+
+<h1>To Do list</h1>
+
+<a href={%url 'task-create' %}>
+    <h2> Add &#9547;</h2>
+</a>
+<div class ="grid">
+    <div></div>
+    <div></div>
+    <div></div>
+
+
+<form action="" method="get">
+
+    <input type="submit" value="Search"> <input type="text" name="search-area" value="{{search_input}}">
+</form>
+
+</div>
+
+<ul>
+    {%for item in tasks %}
+    <div class="grid">
+    <a href="{%url 'task' item.id %}">
+        <li><h2><strong>{{item.title}}</strong></li></h2>
+    </a>
+    <div></div>
+    <div></div>
+
+        <a href="{% url 'task-update' item.id %}"> &#9998; </a>
+        <a href="{% url 'task-delete' item.id %}"> &#10060; </a>
+    </div>
+
+    <hr>
+    {%endfor%}
+</ul>
+{%endblock%}

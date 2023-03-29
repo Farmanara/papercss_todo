@@ -1,0 +1,20 @@
+{%extends './base.html'%}
+
+
+{% block content %}
+
+<article>
+    <header>{{task}}</header>
+    {{task.description}}
+    <footer>Written by {{request.user}}</footer>
+  </article>
+<a href={%url 'tasks'%}> Go back </a>
+
+
+
+
+
+
+
+
+{%endblock%}
