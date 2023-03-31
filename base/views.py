@@ -64,6 +64,7 @@ class TaskList(LoginRequiredMixin,ListView):
             context["search_input"] = search_input
             return context
         
+    
         
 
         

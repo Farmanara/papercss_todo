@@ -1,17 +1,86 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE >
+<html lang="en"  id="html">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
-
+ <link
+      rel="stylesheet"
+      href="https://unpkg.com/papercss@1.9.1/dist/paper.min.css"
+    />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo</title>
+
+    <script>
+        let dark =false
+        function toggle() {
+            let toggle = document.getElementById('html')
+            dark = !dark
+            if (dark) {
+                toggle.classList.add('dark')
+            } else {
+                toggle.classList.remove('dark')
+            }
+        }
+        
+    </script>
 </head>
-<body>
-    <main class="container">
+<body class =" container paper">
+    
+
+
+    <nav class="border fixed split-nav">
+        <div class="nav-brand">
+          <h3><a href="#">Your friendly ToDo list</a></h3> 
+
+          {%if request.user.is_authenticated%}
+          <p>Hey {{request.user}} ! &#x1F609; </p>
+          {%endif%}
+
+
+
+          
+        </div>
+        <div class="collapsible">
+          <input id="collapsible1" type="checkbox" name="collapsible1">
+          <label for="collapsible1">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </label>
+          <div class="collapsible-body">
+            <ul class="inline">
+               
+              {%if request.user.is_authenticated%}
+              <a href="{%url 'logout'%}">Logout</a>
+
+                
+
+              {%else%}
+            <a href="{% url 'login'%}"> Login</a>
+              {%endif%}
+              <br>
+              <br>
+              <button class="btn-small" onclick="toggle()">lights</button>
+
+              
+          </div>
+          
+        </ul>
+        </div>
+        
+      </nav>
+    
+
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     {%block content%}
     {%endblock%}
-</main>
+    
 </body>
 </html>

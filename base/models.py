@@ -17,5 +17,4 @@ class Task(models.Model):
     
 
     class Meta():
-        ordering= ['complete']
-        
+        ordering= ['complete','-created']        

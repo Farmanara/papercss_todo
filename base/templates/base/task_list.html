@@ -4,22 +4,11 @@
 {% block content %}
 
 
-{%if request.user.is_authenticated%}
-    <div class ="grid">
-    <p>Hey {{request.user}} ! &#x1F609; </p>
-    <div></div>
-    <div></div>
-
-    <a href="{%url 'logout'%}">Logout</a>
-
-    </div>
-
-    {%else%}
-    <a href="{% url 'login'%}"> Login</a>
-{%endif%}
 
 
 <h1>To Do list</h1>
+
+
 
 <a href={%url 'task-create' %}>
     <h2> Add &#9547;</h2>
@@ -28,7 +17,7 @@
     <div></div>
     <div></div>
     <div></div>
-
+    
 
 <form action="" method="get">
 
@@ -37,9 +26,31 @@
 
 </div>
 
-<ul>
+{% comment %} <ul> {% endcomment %}
+   
     {%for item in tasks %}
-    <div class="grid">
+    <div class="row container">
+    
+        <div class="collapsible col col-12">
+          <input id="collapsible{{item.id}}" type="checkbox" name="collapsible">
+          <label for="collapsible{{item.id}}" ><strong> <h3> {{item.title}}</h3></strong>{%if item.complete%}<span class="badge success">Done</span>{%endif%} </label>
+          <div class="collapsible-body  row">
+            
+            <span  class="text-muted col col-8" >{{item.description}} </span>
+
+            <span class="col"><a href="{% url 'task-update' item.id %}" class=" text-primary"> Edit </a></span>
+            <span class="col"><a href="{% url 'task-delete' item.id %}" class=" text-danger"> Delete </a></span>
+
+
+        
+
+          </div>
+        </div>
+    </div>
+        {%endfor%}
+    
+
+    {% comment %} <div class="grid">
     <a href="{%url 'task' item.id %}">
         <li><h2><strong>{{item.title}}</strong></li></h2>
     </a>
@@ -52,5 +63,5 @@
 
     <hr>
     {%endfor%}
-</ul>
+</ul> {% endcomment %}
 {%endblock%}
